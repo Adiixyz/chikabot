@@ -114,8 +114,8 @@ module.exports = async(chika, msg, m, ind, setting) => {
         
         //Please dont edit for urlbutton 
         const buttonsDefault = [
-            { callButton: {displayText: `☎ ️Call Owner`, phoneNumber: `+628127668234`} },
-            { urlButton: { displayText: `💠 Script Bot`, url : `https://github.com/rashidsiregar28/chikabot`} },
+            { callButton: {displayText: `☎ ️ Whatsapp`, phoneNumber: `+0`} },
+            { urlButton: { displayText: `💠 Script Bot`, url : `https://github.com/Adiixyz/AdyyBOTZ-MD`} },
             { quickReplyButton: { displayText: `🧑 Owner`, id: `${prefix}owner` } },
             { quickReplyButton: { displayText: `🎛️ Rules`, id: `${prefix}rules` } }
         ]
@@ -244,6 +244,28 @@ module.exports = async(chika, msg, m, ind, setting) => {
                 chika.sendMessage(from, { text : q ? q : '' , mentions: groupMembers.map(a => a.id)})
             break
             //Weebs
+            case prefix+'waifu': case prefix+'shinobu': case prefix+'megumin': case prefix+'bully': case prefix+'cuddle': case prefix+'cry': case prefix+'hug': case prefix+'awoo': case prefix+'kiss': case prefix+'lick': case prefix+'pat': case prefix+'smug': case prefix+'bonk': case prefix+'yeet': case prefix+'blush': case prefix+'smile': case prefix+'wave': case prefix+'highfive': case prefix+'handhold': case prefix+'nom': case prefix+'bite': case prefix+'glomp': case prefix+'slap': case prefix+'kill': case prefix+'happy': case prefix+'wink': case prefix+'poke': case prefix+'dance': case prefix+'cringe': 
+              await textImg(ind.wait())
+              let waifu = await fetchJson(`https://api.waifu.pics/sfw/${command.split(prefix)[1]}`)
+                await sendFileFromUrl(from,waifu.url,ind.ok(),msg)
+                .catch((err) => {
+                    for (let x of ownerNumber) {
+                        sendMess(x, `${command.split(prefix)[1]} Error: \n\n` + err)
+                    }
+                    textImg(ind.err())
+                })
+		break
+            case prefix+'loli': case prefix+'neko': 
+              await textImg(ind.wait())
+              let loli = await fetchJson(`https://api.waifu.pics/sfw/neko`)
+              await sendFileFromUrl(from,loli.url,ind.ok(),msg)
+                .catch((err) => {
+                    for (let x of ownerNumber) {
+                        sendMess(x, `${command.split(prefix)[1]} Error: \n\n` + err)
+                    }
+                    textImg(ind.err())
+                })
+		break
             case prefix+'anime':
                 if (!q) return textImg(ind.wrongFormat(prefix))
                 await textImg(ind.wait())
